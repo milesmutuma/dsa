@@ -2,17 +2,18 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Deque<String> queue = new LinkedList<>();
+        System.out.println(4%2);
 
-        queue.offerLast("hello");
 
-        System.out.println(queue.peekFirst());
-        System.out.println(queue.peekLast());
-
-        System.out.println(14/10);
-        System.out.println(14%10);
     }
+    record Balloon(String color){}
 
+    private static void swap(Balloon o1, Balloon o2) {
+        Balloon temp = o1;
+        o1 = o2;
+        o2 = temp;
+
+    }
     public static List<CostArray> transformToCostArray(List<DistanceCost> distanceCosts) {
         List<CostArray> costArray = new ArrayList<>();
 

@@ -40,24 +40,27 @@ public class RemoveNthFromEnd {
     public static ListNode removeNthFromEndV2(ListNode head, int n) {
         var dummy = new ListNode(0);
         dummy.next = head;
-        var first = dummy;
-        var second = dummy;
+        var fast = dummy;
+        var slow = dummy;
 
-        // Move the second pointer n steps ahead
-        for (int i = 1; i <= n + 1; i++) {
-            second = second.next;
+        // move forward n times
+        for (int i = 0; i <= n; i++) {
+            fast = fast.next;
         }
 
-        // Move both pointers until second reaches the end
-        while (second != null) {
-            first = first.next;
-            second = second.next;
+        // move the slow pointer to the point where fast is null
+        while (fast != null) {
+            fast = fast.next;
+            slow = slow.next;
         }
 
-        // Skip the nth node
-        first.next = first.next.next;
+        // since fast is already n steps ahead, by the time fast is null
+        // slow will be n-1steps behind, so the slow.next will be the nth node we need to skip
+
+        slow.next = slow.next.next;
 
         return dummy.next;
+
     }
 
     public static void main(String[] args) {

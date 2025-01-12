@@ -57,6 +57,23 @@ public class MergeTwoSortedLists {
 
         return tail;
     }
+    public static ListNode mergeTwoListsRecursion(ListNode li1, ListNode li2) {
+        if (li1 == null) {
+            return li2;
+        }
+
+        if (li2 == null) {
+            return li1;
+        }
+
+        if (li1.val < li2.val) {
+            li1.next = mergeTwoLists(li1.next,li2);
+            return li1;
+        }else {
+            li2.next = mergeTwoLists(li1, li2.next);
+            return li2;
+        }
+    }
 
     public static void main(String[] args) {
         // test mergeTwoLists
@@ -67,7 +84,7 @@ public class MergeTwoSortedLists {
         ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
         ListNode list2 = new ListNode(1, new ListNode(3, new ListNode(4)));
 
-        ListNode result = mergeTwoLists(list1, list2);
+        ListNode result = mergeTwoListsRecursion(list1, list2);
 
         // loop through the list
         while (result != null) {
@@ -80,7 +97,7 @@ public class MergeTwoSortedLists {
         ListNode list3 = null;
         ListNode list4 = null;
 
-        ListNode result2 = mergeTwoLists(list3, list4);
+        ListNode result2 = mergeTwoListsRecursion(list3, list4);
         while (result2 != null) {
             System.out.println(result2.val);
             result2 = result2.next;
